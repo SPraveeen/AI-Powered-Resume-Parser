@@ -4,6 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from dotenv import load_dotenv
+from datetime import timezone
 
 load_dotenv()
 
@@ -21,7 +22,7 @@ class Resume(Base):
     filename = Column(String, nullable=False)
     original_text = Column(Text, nullable=False)
     parsed_data = Column(JSON, nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.now(timezone.utc))
     
     # Extracted fields for easy querying
     name = Column(String, nullable=True)
